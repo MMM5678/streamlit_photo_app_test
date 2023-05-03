@@ -14,8 +14,8 @@ from keras.models import Sequential  #keras==2.12.0
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from keras.utils import to_categorical
 import cv2  #opencv-python==4.7.0.72
-import tkinter as tk
-from tkinter import filedialog
+#import tkinter as tk
+#from tkinter import filedialog
 from PIL import ImageTk, Image
 from pathlib import Path
 import tempfile
@@ -120,9 +120,9 @@ if img_file is not None:
     model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val, y_val))
 
     # GUIの作成
-    root = tk.Tk()
-    root.title("loghton or lightoff Classifier")
-    root.geometry("500x500")
+    #root = tk.Tk()
+    #root.title("loghton or lightoff Classifier")
+    #root.geometry("500x500")
 
     # 画像を選択する
     file_path = img_path
