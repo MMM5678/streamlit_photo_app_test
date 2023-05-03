@@ -16,7 +16,8 @@ from keras.utils import to_categorical
 import cv2  #opencv-python==4.7.0.72
 #import tkinter as tk
 #from tkinter import filedialog
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
+from PIL import Image
 from pathlib import Path
 import tempfile
 
