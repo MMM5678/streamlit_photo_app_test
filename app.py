@@ -1,30 +1,21 @@
 import streamlit as st #streamlit==1.22.0
 import matplotlib.pyplot as plt #matplotlib==3.7.1
-#from PIL import Image
 import requests #requests==2.29.0
-# import os.path
 import numpy as np #numpy==1.23.5  
-#from openvino.inference_engine import IECore
 from torchvision.io import read_image   #torchvision==0.15.1
 
-#
-#####
 import os
 from keras.models import Sequential  #keras==2.12.0
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from keras.utils import to_categorical
 import cv2  #opencv-python==4.7.0.72
-#import tkinter as tk
-#from tkinter import filedialog
-#from PIL import ImageTk, Image
 from PIL import Image
 from pathlib import Path
 import tempfile
+import datetime
 
 # 画像ファイルのパス
 from tensorflow.python.keras.layers import Activation #tensorflow==2.12.0
-#####
-#
 
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
@@ -45,12 +36,30 @@ elif img_source == "カメラで撮影":
 ###
 ###
 if img_file is not None:
-    IMG_PATH = 'imgs'
-    img_path = os.path.join(IMG_PATH, img_file.name)
+    # 画像を表示する
     st.image(img_file)
-    print(img_file)
-    print(img_path)
- 
+
+    # ファイルパス取得
+    t_dalta = datetime.timedelta(hours=9)
+    JST =datetime.timezone(t_dalta,'JST')
+    now = datetime.datetime.now(JST)
+    d = now.strftime('%Y%m%d%H%M%S')
+    file_dir = "./data"
+    file_temp = os.path.join(file_dir, "temp.png")
+    file_name =  str(d) + "_" + img_file.name
+    file_path = os.path.join(file_dir, file_name)
+
+    #print('@@@@@@@@@@@-Start-@@@@@@@@@@')
+    #print(img_file)
+    #print(d)
+    #print(file_name)
+    print(file_path)
+    #print('@@@@@@@@@@@- End -@@@@@@@@@@')
+
+    # ファイルOpen,Save
+    img = Image.open(img_file)
+    img.save(file_path)
+
     IMG_SIZE = 64
 
     # モデルの作成とトレーニング
@@ -120,15 +129,10 @@ if img_file is not None:
     # モデルをトレーニングする
     model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val, y_val))
 
-    # GUIの作成
-    #root = tk.Tk()
-    #root.title("loghton or lightoff Classifier")
-    #root.geometry("500x500")
-
     # 画像を選択する
-    file_path = img_path
-    print(img_path)
-    print(file_path)
+    #file_path = img_path
+    #print(img_path)
+    #print(file_path)
 
     # 選択された画像をモデルに入力して予測結果を表示する
     image_selected = cv2.imread(file_path)
@@ -142,5 +146,3 @@ if img_file is not None:
     else:
         st.write("LIGHT-OFF!")
         print("LIGHT-OFF")
-
-###
