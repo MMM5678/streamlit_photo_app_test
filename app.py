@@ -49,12 +49,12 @@ if img_file is not None:
     file_name =  str(d) + "_" + img_file.name
     file_path = os.path.join(file_dir, file_name)
 
-    #print('@@@@@@@@@@@-Start-@@@@@@@@@@')
-    #print(img_file)
-    #print(d)
-    #print(file_name)
+    print('@@@@@@@@@@@-Start-@@@@@@@@@@')
+    print(img_file)
+    print(d)
+    print(file_name)
     print(file_path)
-    #print('@@@@@@@@@@@- End -@@@@@@@@@@')
+    print('@@@@@@@@@@@- End -@@@@@@@@@@')
 
     # ファイルOpen,Save
     img = Image.open(img_file)
