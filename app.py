@@ -45,7 +45,7 @@ if img_file is not None:
     now = datetime.datetime.now(JST)
     d = now.strftime('%Y%m%d%H%M%S')
     file_dir = "./data"
-    file_temp = os.path.join(file_dir, "temp.png")
+    #file_temp = os.path.join(file_dir, "temp.png")
     file_name =  str(d) + "_" + img_file.name
     file_path = os.path.join(file_dir, file_name)
 
